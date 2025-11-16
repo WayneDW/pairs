@@ -20,10 +20,10 @@ import matplotlib.dates as mdates
 WINDOW = 250  # rolling window size (e.g., 250 trading days ≈ 1 year)
 
 PAIRS = [
-    ('TQQQ', 'GLD'),      # risk-on vs safe-haven (leveraged growth sentiment)
-    ('QQQ', 'GLD'),       # risk-on vs safe-haven
-    ('QQQ', 'SPY'),       # growth vs value
     ('QQQ', 'BRK-B'),     # growth vs quality value
+    ('QQQ', 'SPY'),       # growth vs value
+    ('QQQ', 'GLD'),       # risk-on vs safe-haven
+    ('TQQQ', 'GLD'),      # risk-on vs safe-haven (leveraged growth sentiment)
     ('NVDA', 'QQQ'),      # AI & innovation vs broad market
     ('SMH', 'QQQ'),       # semiconductors vs tech index
     #('USO', 'TLT'),       # real-economy vs bonds
@@ -34,7 +34,6 @@ PAIRS = [
 ]
 
 START_DATE = "2016-01-01"
-END_DATE = "2025-10-20"  # optional: set to None to fetch up to latest
 
 # ===== Helper Functions =====
 def get_rolling_return(df: pd.DataFrame, sym: str, window: int = 100) -> pd.DataFrame:
@@ -67,7 +66,6 @@ def main():
     raw_data = {}
     for sym in all_tickers:
         try:
-            #df = yf.download(sym, start=START_DATE, end=END_DATE, auto_adjust=False, progress=False)
             df = yf.download(sym, start=START_DATE, auto_adjust=False, progress=False)
         except Exception as e:
             print(f"[WARN] Failed to download {sym}: {e}")
