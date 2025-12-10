@@ -24,8 +24,8 @@ PAIRS = [
     ('QQQ', 'SPY'),       # growth vs value
     ('QQQ', 'GLD'),       # risk-on vs safe-haven
     ('TQQQ', 'QQQ'),      # risk-on vs safe-haven (leveraged growth sentiment)
-    ('NVDA', 'QQQ'),      # AI & innovation vs broad market
-    ('SMH', 'QQQ'),       # semiconductors vs tech index
+    ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
+    ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
     #('USO', 'TLT'),       # real-economy vs bonds
     ('BTC-USD', 'QQQ'),   # digital liquidity vs traditional growth
     ('TIP', 'TLT'),       # inflation expectation vs nominal rate
