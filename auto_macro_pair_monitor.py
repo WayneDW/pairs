@@ -23,7 +23,8 @@ PAIRS = [
     ('QQQ', 'BRK-B'),     # growth vs quality value
     ('QQQ', 'SPY'),       # growth vs value
     ('QQQ', 'GLD'),       # risk-on vs safe-haven
-    ('TQQQ', 'QQQ'),      # risk-on vs safe-haven (leveraged growth sentiment)
+    #('TQQQ', 'QQQ'),      # risk-on vs safe-haven (leveraged growth sentiment)
+    ('^VIX', 'SPY'),
     ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
     ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
     #('USO', 'TLT'),       # real-economy vs bonds
