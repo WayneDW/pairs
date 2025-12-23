@@ -20,21 +20,20 @@ import matplotlib.dates as mdates
 WINDOW = 250  # rolling window size (e.g., 250 trading days ≈ 1 year)
 
 PAIRS = [
-    ('QQQ', 'BRK-B'),     # growth vs quality value
-    ('QQQ', 'SPY'),       # growth vs value
-    ('QQQ', 'GLD'),       # risk-on vs safe-haven
-    #('TQQQ', 'QQQ'),      # risk-on vs safe-haven (leveraged growth sentiment)
-    ('^VIX', 'SPY'),
+    ('BRK-B', 'SPY'),     # growth vs quality value
+    ('GLD', 'SPY'),       # growth vs value
+    ('TQQQ', 'SPY'),      # risk-on vs safe-haven (leveraged growth sentiment)
     ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
     ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
-    #('USO', 'TLT'),       # real-economy vs bonds
-    ('BTC-USD', 'QQQ'),   # digital liquidity vs traditional growth
-    ('TIP', 'TLT'),       # inflation expectation vs nominal rate
-    ('DX-Y.NYB', 'GLD')   # dollar vs gold (global risk flow)
-    # If you use BTC, keep the BTC-only clip behavior below.
+    ('NVDA', 'GOOG'),       # real-economy vs bonds
+    ('META', 'GOOG'),
+    ('BTC-USD', 'SPY'),   # digital liquidity vs traditional growth
+    ('SPY', '^HSI')   # dollar vs gold (global risk flow)
 ]
 
-START_DATE = "2016-01-01"
+START_DATE = "1990-01-01"
+#START_DATE = "1993-01-01"
+
 
 # ===== Helper Functions =====
 def get_rolling_return(df: pd.DataFrame, sym: str, window: int = 100) -> pd.DataFrame:
@@ -100,8 +99,8 @@ def main():
         diff = df[tcol] - df[bcol]
 
         # BTC-only clip (no default clip for others)
-        if 'BTC' in TARGET:
-            diff = diff.clip(-2, 2)
+        if 'BTC' in TARGET or 'NVDA' in TARGET or 'TQQQ' in TARGET:
+            diff = diff.clip(-1.5, 1.5)
 
         latest_diff = float(diff.iloc[-1])
         latest_pct = percentile_rank(diff.values, latest_diff)
@@ -132,6 +131,7 @@ def main():
         for label in ax.get_xticklabels():
             label.set_rotation(0) 
         ax.set_xlabel("")  
+        ax.tick_params(axis='x', rotation=45)
         ax.set_ylabel(f"{WINDOW}-CumReturn Diff")
         #ax.legend()
         ax.grid(True, linestyle='--', alpha=0.5)
