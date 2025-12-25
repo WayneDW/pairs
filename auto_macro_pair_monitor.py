@@ -23,13 +23,15 @@ PAIRS = [
     ('BRK-B', 'SPY'),     # growth vs quality value
     ('GLD', 'SPY'),       # growth vs value
     ('BTC-USD', 'SPY'),   # digital liquidity vs traditional growth
-    ('TQQQ', 'SPY'),      # risk-on vs safe-haven (leveraged growth sentiment)
+    # ('TQQQ', 'SPY'),      # risk-on vs safe-haven (leveraged growth sentiment)
     ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
     ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
-    ('GOOG', 'QQQ'),       # real-economy vs bonds
-    ('META', 'QQQ'),
+    ('META', 'GOOG'),
+    ('SPY', 'TLT'),   # risk-on vs duration (flight-to-quality)
     ('SPY', '^HSI')   # dollar vs gold (global risk flow)
 ]
+
+
 
 START_DATE = "1990-01-01"
 #START_DATE = "1993-01-01"
