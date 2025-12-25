@@ -22,12 +22,12 @@ WINDOW = 250  # rolling window size (e.g., 250 trading days ≈ 1 year)
 PAIRS = [
     ('BRK-B', 'SPY'),     # growth vs quality value
     ('GLD', 'SPY'),       # growth vs value
-    ('TQQQ', 'SPY'),      # risk-on vs safe-haven (leveraged growth sentiment)
-    ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
-    ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
-    ('NVDA', 'GOOG'),       # real-economy vs bonds
-    ('META', 'GOOG'),
     ('BTC-USD', 'SPY'),   # digital liquidity vs traditional growth
+    ('TQQQ', 'SPY'),      # risk-on vs safe-haven (leveraged growth sentiment)
+    ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
+    ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
+    ('GOOG', 'QQQ'),       # real-economy vs bonds
+    ('META', 'QQQ'),
     ('SPY', '^HSI')   # dollar vs gold (global risk flow)
 ]
 
