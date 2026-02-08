@@ -20,15 +20,21 @@ import matplotlib.dates as mdates
 WINDOW = 250  # rolling window size (e.g., 250 trading days ≈ 1 year)
 
 PAIRS = [
-    ('BRK-B', 'SPY'),     # growth vs quality value
-    ('GLD', 'SPY'),       # growth vs value
-    ('BTC-USD', 'SPY'),   # digital liquidity vs traditional growth
-    ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
-    ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
-    ('META', 'GOOG'),
-    ('TSLA', 'QQQ'),
-    ('ADBE', 'QQQ'),
-    ('SPY', '^HSI')   # dollar vs gold (global risk flow)
+    ('BRK-B', 'SPY'),     # 0
+    ('GLD', 'SPY'),       # 1
+    ('BTC-USD', 'SPY'),   # 2
+    ('QQQ', 'SPY'),       # 3
+    ('NVDA', 'QQQ'),      # 4
+    ('TSM', 'QQQ'),       # 5
+    ('SMH', 'QQQ'),      # 6
+    ('AAPL', 'QQQ'),     # 7
+    ('AMZN', 'QQQ'),     # 8
+    ('META', 'QQQ'),     # 9
+    ('GOOG', 'QQQ'),     # 10
+    ('TSLA', 'QQQ'),     # 11
+    ('MSFT', 'QQQ'),     # 12   
+    ('ADBE', 'QQQ'),     # 13   
+    ('SPY', '^HSI')     # 14
 ]
 
 
@@ -74,9 +80,9 @@ def main():
             df = pd.DataFrame()
         raw_data[sym] = df
 
-    # Prepare figure (3x3 grid; hide extras if <9 pairs)
-    n_rows, n_cols = 3, 3
-    fig, axs = plt.subplots(n_rows, n_cols, figsize=(12, n_rows * 2))
+    # Prepare figure (4x4 grid; hide extras if <16 pairs)
+    n_rows, n_cols = 4, 4
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(14, n_rows * 2))
     axs = axs.flatten()
 
     for idx, (TARGET, BASE) in enumerate(PAIRS):
@@ -101,8 +107,9 @@ def main():
         diff = df[tcol] - df[bcol]
 
         # BTC-only clip (no default clip for others)
-        if 'BTC' in TARGET or 'NVDA' in TARGET or 'TQQQ' in TARGET:
-            diff = diff.clip(-1.5, 1.5)
+        for truncate_sym in ['BTC', 'NVDA', 'TQQQ', 'TSLA', 'AMZN']:
+            if truncate_sym in TARGET:
+                diff = diff.clip(-1.5, 1.5)
 
         latest_diff = float(diff.iloc[-1])
         latest_pct = percentile_rank(diff.values, latest_diff)
@@ -179,10 +186,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
