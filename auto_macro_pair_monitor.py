@@ -21,9 +21,9 @@ WINDOW = 250  # rolling window size (e.g., 250 trading days ≈ 1 year)
 
 PAIRS = [
     ('BRK-B', 'SPY'),    
+    ('QQQ', 'SPY'),
     ('GLD', 'SPY'),      
     ('BTC-USD', 'SPY'),  
-    ('QQQ', 'SPY'),      
     ('^HSI', 'SPY'),      
     ('NVDA', 'QQQ'),     
     ('TSM', 'QQQ'),      
