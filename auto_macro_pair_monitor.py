@@ -109,7 +109,7 @@ def main():
         # BTC-only clip (no default clip for others)
         for truncate_sym in ['BTC', 'NVDA', 'TQQQ', 'TSLA', 'AMZN', 'AAPL', 'META', 'GOOG', 'MSFT', 'ADBE', 'SMH', 'TSM', 'QQQ']:
             if truncate_sym in TARGET:
-                diff = diff.clip(-1.5, 1.5)
+                diff = diff.clip(-1, 1)
 
         latest_diff = float(diff.iloc[-1])
         latest_pct = percentile_rank(diff.values, latest_diff)
