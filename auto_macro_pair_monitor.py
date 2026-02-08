@@ -20,21 +20,21 @@ import matplotlib.dates as mdates
 WINDOW = 250  # rolling window size (e.g., 250 trading days ≈ 1 year)
 
 PAIRS = [
-    ('BRK-B', 'SPY'),     # 0
-    ('GLD', 'SPY'),       # 1
-    ('BTC-USD', 'SPY'),   # 2
-    ('QQQ', 'SPY'),       # 3
-    ('NVDA', 'QQQ'),      # 4
-    ('TSM', 'QQQ'),       # 5
-    ('SMH', 'QQQ'),      # 6
-    ('AAPL', 'QQQ'),     # 7
-    ('AMZN', 'QQQ'),     # 8
-    ('META', 'QQQ'),     # 9
-    ('GOOG', 'QQQ'),     # 10
-    ('TSLA', 'QQQ'),     # 11
-    ('MSFT', 'QQQ'),     # 12   
-    ('ADBE', 'QQQ'),     # 13   
-    ('SPY', '^HSI')     # 14
+    ('BRK-B', 'SPY'),    
+    ('GLD', 'SPY'),      
+    ('BTC-USD', 'SPY'),  
+    ('QQQ', 'SPY'),      
+    ('^HSI', 'SPY'),      
+    ('NVDA', 'QQQ'),     
+    ('TSM', 'QQQ'),      
+    ('SMH', 'QQQ'),  
+    ('GOOG', 'QQQ'),     
+    ('AAPL', 'QQQ'),     
+    ('TSLA', 'QQQ'),   
+    ('META', 'QQQ'),    
+    ('AMZN', 'QQQ'),        
+    ('MSFT', 'QQQ'),      
+    ('ADBE', 'QQQ'),      
 ]
 
 
@@ -80,8 +80,8 @@ def main():
             df = pd.DataFrame()
         raw_data[sym] = df
 
-    # Prepare figure (4x4 grid; hide extras if <16 pairs)
-    n_rows, n_cols = 4, 4
+    # Prepare figure (3x5 grid; hide extras if <15 pairs)
+    n_rows, n_cols = 3, 5
     fig, axs = plt.subplots(n_rows, n_cols, figsize=(14, n_rows * 2))
     axs = axs.flatten()
 
@@ -114,34 +114,35 @@ def main():
         latest_diff = float(diff.iloc[-1])
         latest_pct = percentile_rank(diff.values, latest_diff)
 
-        # === quantile coloring logic ===
-        q10, q90 = np.nanquantile(diff, [0.1, 0.9])
-        ax.set_title(
-           f'{TARGET} − {BASE} | pct {latest_pct:.1f}%',
-            fontsize=11,
-            color='red' if (latest_diff < q10 or latest_diff > q90) else 'black'
-        )
-
-        q10, q25, q75, q90 = np.nanquantile(diff, [0.1, 0.25, 0.75, 0.9])
-        color = (
-            'red' if (latest_diff < q10 or latest_diff > q90)
-            else 'orange' if (q10 <= latest_diff < q25 or q75 < latest_diff <= q90)
-            else 'black'
-        )
-
-        ax.set_title(f'{TARGET} − {BASE} | pct {latest_pct:.1f}%', fontsize=11, color=color)
+        # === quantile coloring: green/blue for low percentiles, red/orange/black for above 50% ===
+        q10, q25, q50, q75, q90 = np.nanquantile(diff, [0.1, 0.25, 0.5, 0.75, 0.9])
+        if latest_diff < q10:
+            color = 'green'
+        elif latest_diff < q25:
+            color = 'black'
+        else:
+            # above 50% (and 25–50% middle): keep original scheme
+            color = (
+                'red' if latest_diff >= q90
+                else 'orange' if latest_diff >= q75
+                else 'black'
+            )
 
         # Plot
         ax.plot(df.index, diff.values, label=f'{TARGET} − {BASE}', color=f'C{idx % 10}')
         ax.axhline(0, color='black', linestyle='--', alpha=0.7)
-        ax.set_title(f'{TARGET} − {BASE} | pct {latest_pct:.1f}%', fontsize=11)
+        ax.set_title(f'{TARGET} − {BASE} | pct {latest_pct:.1f}%', fontsize=11, color=color)
         ax.xaxis.set_major_locator(mdates.YearLocator(2))
         ax.xaxis.set_major_formatter(mdates.DateFormatter('%Y'))
         for label in ax.get_xticklabels():
             label.set_rotation(0) 
         ax.set_xlabel("")  
         ax.tick_params(axis='x', rotation=45)
-        ax.set_ylabel(f"{WINDOW}-CumReturn Diff")
+        if idx % n_cols == 0:
+            ax.set_ylabel(f"{WINDOW}-CumReturn Diff")
+        else:
+            ax.set_ylabel("")
+            ax.set_yticks([])
         #ax.legend()
         ax.grid(True, linestyle='--', alpha=0.5)
 
@@ -150,6 +151,7 @@ def main():
         axs[j].axis('off')
 
     plt.tight_layout()
+    fig.subplots_adjust(wspace=0.05)  # reduce gap between columns
 
     # ===== Save outputs for GitHub Pages =====
     os.makedirs("docs", exist_ok=True)
