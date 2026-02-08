@@ -23,11 +23,11 @@ PAIRS = [
     ('BRK-B', 'SPY'),     # growth vs quality value
     ('GLD', 'SPY'),       # growth vs value
     ('BTC-USD', 'SPY'),   # digital liquidity vs traditional growth
-    # ('TQQQ', 'SPY'),      # risk-on vs safe-haven (leveraged growth sentiment)
     ('NVDA', 'SMH'),       # nvidia v.s. semiconductors
     ('NVDA', 'QQQ'),      # AI & innovation v.s. broad market
     ('META', 'GOOG'),
-    ('SPY', 'TLT'),   # risk-on vs duration (flight-to-quality)
+    ('TSLA', 'QQQ'),
+    ('ADBE', 'QQQ'),
     ('SPY', '^HSI')   # dollar vs gold (global risk flow)
 ]
 
