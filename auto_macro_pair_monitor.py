@@ -107,7 +107,7 @@ def main():
         diff = df[tcol] - df[bcol]
 
         # BTC-only clip (no default clip for others)
-        for truncate_sym in ['BTC', 'NVDA', 'TQQQ', 'TSLA', 'AMZN']:
+        for truncate_sym in ['BTC', 'NVDA', 'TQQQ', 'TSLA', 'AMZN', 'AAPL', 'META', 'GOOG', 'MSFT', 'ADBE', 'SMH', 'TSM', 'QQQ']:
             if truncate_sym in TARGET:
                 diff = diff.clip(-1.5, 1.5)
 
