@@ -28,7 +28,7 @@ PAIRS = [
     ('NVDA', 'QQQ'),     
     ('TSM', 'QQQ'),      
     ('SMH', 'QQQ'),  
-    ('MU', 'QQQ'),  
+    ('IGV', 'QQQ'),  
     ('GOOG', 'QQQ'),     
     ('TSLA', 'QQQ'),   
     ('META', 'QQQ'),    
