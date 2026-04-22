@@ -31,10 +31,10 @@ PAIRS = [
     ('SMH', 'QQQ'),  
     ('IGV', 'QQQ'),  
     ('GOOG', 'QQQ'),     
-    ('TSLA', 'QQQ'),   
+    ('MSFT', 'QQQ'),   
     ('META', 'QQQ'),    
     ('AMZN', 'QQQ'),        
-    ('MSFT', 'QQQ'),      
+    ('AIPO', 'QQQ'),      
 ]
 
 
