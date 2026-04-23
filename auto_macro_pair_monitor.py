@@ -34,7 +34,7 @@ PAIRS = [
     ('MSFT', 'QQQ'),   
     ('META', 'QQQ'),    
     ('AMZN', 'QQQ'),        
-    ('AIPO', 'QQQ'),      
+    ('AAPL', 'QQQ'),      
 ]
 
 
