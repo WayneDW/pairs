@@ -29,7 +29,7 @@ PAIRS = [
     ('MU', 'QQQ'),  
     ('IGV', 'QQQ'),      
     ('SMH', 'QQQ'),  
-    ('XLU', 'QQQ'),  
+    ('XLU', 'SPY'),  
     ('GOOG', 'QQQ'),     
     ('MSFT', 'QQQ'),   
     ('META', 'QQQ'),    
