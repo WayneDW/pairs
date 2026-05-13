@@ -26,7 +26,8 @@ PAIRS = [
     ('BTC-USD', 'SPY'),  
     ('^HSI', 'SPY'),      
     ('NVDA', 'QQQ'),     
-    ('MU', 'QQQ'),  
+    ('MU', 'SMH'), 
+    ('QCOM', 'SMH'), 
     ('IGV', 'QQQ'),      
     ('SMH', 'QQQ'),  
     ('XLU', 'SPY'),  
@@ -34,7 +35,6 @@ PAIRS = [
     ('MSFT', 'QQQ'),   
     ('META', 'QQQ'),    
     ('AMZN', 'QQQ'),        
-    ('AAPL', 'QQQ'),      
 ]
 
 
