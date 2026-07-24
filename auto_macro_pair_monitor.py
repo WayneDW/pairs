@@ -27,7 +27,7 @@ PAIRS = [
     ('^HSI', 'SPY'),      
     ('NVDA', 'QQQ'),     
     ('MU', 'SMH'), 
-    ('MRVL', 'SMH'), 
+    ('AVGO', 'SMH'), 
     ('IGV', 'QQQ'),      
     ('SMH', 'QQQ'),  
     ('AAPL', 'QQQ'),  
