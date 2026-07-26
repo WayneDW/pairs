@@ -24,7 +24,7 @@ PAIRS = [
     ('QQQ', 'SPY'),
     ('GLD', 'SPY'),      
     ('BTC-USD', 'SPY'),  
-    ('^HSI', 'SPY'),      
+    ('TSLA', 'XLK'),      
     ('NVDA', 'SMH'),     
     ('MU', 'SMH'), 
     ('AVGO', 'SMH'), 
