@@ -35,7 +35,7 @@ PAIRS = [
     ('ORCL', 'QQQ'),
     ('NFLX', 'QQQ'),
     ('IGV', 'QQQ'),
-    ('PLTR', 'QQQ'),
+    ('SMH', 'QQQ'),
     # Semiconductors vs SMH (largest first)
     ('NVDA', 'SMH'),
     ('AVGO', 'SMH'),
@@ -155,7 +155,7 @@ def main():
             ax.set_ylabel(f"{WINDOW}-CumReturn Diff")
         else:
             ax.set_ylabel("")
-            ax.set_yticks([])
+        ax.tick_params(axis='y', labelsize=7)
         #ax.legend()
         ax.grid(True, linestyle='--', alpha=0.5)
 
@@ -164,7 +164,7 @@ def main():
         axs[j].axis('off')
 
     plt.tight_layout()
-    fig.subplots_adjust(wspace=0.05)  # reduce gap between columns
+    fig.subplots_adjust(wspace=0.18)  # column gaps with smaller y tick labels
 
     # ===== Save outputs for GitHub Pages =====
     os.makedirs("docs", exist_ok=True)
