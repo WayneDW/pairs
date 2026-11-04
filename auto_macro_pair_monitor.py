@@ -19,22 +19,35 @@ import matplotlib.dates as mdates
 # ===== Parameters =====
 WINDOW = 250  # rolling window size (e.g., 250 trading days ≈ 1 year)
 
+# 4x6 = 24 pairs; ordered with large market-cap names first within each theme
 PAIRS = [
-    ('BRK-B', 'SPY'),    
+    # Macro / broad
+    ('BRK-B', 'SPY'),
     ('QQQ', 'SPY'),
-    ('GLD', 'SPY'),      
-    ('BTC-USD', 'SPY'),  
-    ('TSLA', 'XLY'),      
-    ('NVDA', 'SMH'),     
-    ('MU', 'SMH'), 
-    ('AVGO', 'SMH'), 
-    ('AMD', 'SMH'),      
-    ('MRVL', 'SMH'),  
-    ('AAPL', 'QQQ'),  
-    ('GOOG', 'QQQ'),     
-    ('MSFT', 'QQQ'),   
-    ('META', 'QQQ'),    
-    ('AMZN', 'QQQ'),        
+    ('GLD', 'SPY'),
+    ('BTC-USD', 'SPY'),
+    # Mega-cap tech vs QQQ
+    ('AAPL', 'QQQ'),
+    ('MSFT', 'QQQ'),
+    ('GOOG', 'QQQ'),
+    ('AMZN', 'QQQ'),
+    ('META', 'QQQ'),
+    ('ORCL', 'QQQ'),
+    ('NFLX', 'QQQ'),
+    ('IGV', 'QQQ'),
+    ('PLTR', 'QQQ'),
+    # Semiconductors vs SMH (largest first)
+    ('NVDA', 'SMH'),
+    ('AVGO', 'SMH'),
+    ('TSM', 'SMH'),
+    ('AMD', 'SMH'),
+    ('MU', 'SMH'),
+    ('INTC', 'SMH'),
+    ('MRVL', 'SMH'),
+    ('TSLA', 'XLY'),
+    ('LLY', 'XLV'),
+    ('JPM', 'XLF'),
+    ('XOM', 'XLE'),
 ]
 
 
@@ -80,9 +93,9 @@ def main():
             df = pd.DataFrame()
         raw_data[sym] = df
 
-    # Prepare figure (3x5 grid; hide extras if <15 pairs)
-    n_rows, n_cols = 3, 5
-    fig, axs = plt.subplots(n_rows, n_cols, figsize=(14, n_rows * 2))
+    # Prepare figure (4x6 grid; hide extras if <24 pairs)
+    n_rows, n_cols = 4, 6
+    fig, axs = plt.subplots(n_rows, n_cols, figsize=(16, n_rows * 2))
     axs = axs.flatten()
 
     for idx, (TARGET, BASE) in enumerate(PAIRS):
