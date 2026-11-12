@@ -28,12 +28,12 @@ PAIRS = [
     ('BTC-USD', 'SPY'),
     # Mega-cap tech vs QQQ
     ('AAPL', 'QQQ'),
+    ('NVDA', 'QQQ'),
     ('MSFT', 'QQQ'),
     ('GOOG', 'QQQ'),
     ('AMZN', 'QQQ'),
     ('META', 'QQQ'),
     ('ORCL', 'QQQ'),
-    ('NFLX', 'QQQ'),
     ('IGV', 'QQQ'),
     ('SMH', 'QQQ'),
     # Semiconductors vs SMH (largest first)
