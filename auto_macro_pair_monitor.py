@@ -24,6 +24,7 @@ PAIRS = [
     # Macro / broad
     ('BRK-B', 'SPY'),
     ('QQQ', 'SPY'),
+    ('BRK-B', 'QQQ'),
     ('GLD', 'SPY'),
     ('BTC-USD', 'SPY'),
     # Mega-cap tech vs QQQ
@@ -41,7 +42,6 @@ PAIRS = [
     ('MU', 'SMH'),
     ('AVGO', 'SMH'),
     ('MRVL', 'SMH'),
-    ('TSM', 'SMH'),
     ('AMD', 'SMH'),
     ('INTC', 'SMH'),
     ('TSLA', 'XLY'),
